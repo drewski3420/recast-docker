@@ -48,6 +48,7 @@ def index(request):
 
 def help(request):
     request.vals["page_title"] = "Help"
+    request.vals["feeds_server"] = settings.FEEDS_SERVER
     return render(request, "help.html", request.vals)
 
 
