@@ -10,24 +10,13 @@ Instead of subscribing directly to the podcast, you give Recast the address of t
 
 By default Recast will feed you a new episode of the podcast every five days - enough to slowly catch up with most weekly podcasts. At any time, you can change the frequency new episodes are released, or just release the next episode.
 
-## Installation
+## Docker Installation
 
-Recast is a pretty simple django (4.2) application.
+Clone the repo into your recast directory. Rename the folder to src (or adjust the build context in the docker-compose.yml file)
 
-Install it using `pip -r requirements.txt`
+Copy docker-compose.yml and env_file example files into recast folder. Adjust values as necessary, especially in env_file. Be sure to mount a volume for db_data to persist your recast data.
 
-There are a number of settings that are not in `settings.py`  They are imported from `server_setings.py` which you will need to create.
-
-The settings are as follows:
-
-### Standard Django Settings
-
-* `ALLOWED_HOSTS` 
-* `STATIC_ROOT`
-* `DEBUG`
-* `SECRET_KEY` 
-* `DATABASES` - The full database dictionary 
-
+Bring the container up using docker-compose up -d. Navigate to localhost:8000 (or whatever port you've mapped) to view the application.
 
 ### Recast Specific Settings
 
