@@ -1,3 +1,4 @@
+import os
 from django.db import models
 
 # Create your models here.
@@ -12,6 +13,7 @@ import email
 
 from feeds.models import Source, Post
 
+DEFAULT_SUBSCRIPTION_FREQUENCY = int(os.environ.get("DEFAULT_SUBSCRIPTION_FREQUENCY", 5))
 
 # A user subscription
 class Subscription(models.Model):
@@ -20,7 +22,7 @@ class Subscription(models.Model):
     last_sent = models.IntegerField(default=1)
     last_sent_date = models.DateTimeField()
     frequency = models.IntegerField(
-        default=5
+        default=DEFAULT_SUBSCRIPTION_FREQUENCY
     )  # in days.  A little faster than a week so most podcasts catch up
     name = models.CharField(max_length=255)
     complete = models.BooleanField(default=False)
