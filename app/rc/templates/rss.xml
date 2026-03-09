@@ -1,0 +1,43 @@
+{% load rc_tags %}<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
+    <channel> 
+        <title>{{source.name}} (recast)</title> 
+        <link>{{url}}edit/</link> 
+        <description>This is a recast of {{source.name}}.
+        
+New items are added every {{subscription.frequency}} days.
+
+Visit the link in an episode to edit the recast settings.
+        </description>  
+
+        {% if source.image_url %}
+            <itunes:image href="{{source.image_url}}"/>
+        {% endif %}
+
+
+    {% for p in posts %}
+        <item> 
+            <title>{{p.title}}</title> 
+            <link>{{base_href}}{{p.recast_link}}</link> 
+            {% if p.author %}
+                <author>{{p.author}}</author>
+            {% endif %}
+            <pubDate>{{p|subscription_created}}</pubDate>
+            <description>
+                &lt;i&gt;Originally released {{p.created|date}}&lt;/i&gt;&lt;br&gt;
+                [&lt;a href="{{edit_link}}"&gt;edit recast settings&lt;/a&gt;] &lt;br&gt;&lt;br&gt;
+                {{ p.body }}
+            </description> 
+            <guid>{{subscription.key}}/{{p.id}}</guid> 
+            {% for e in p.enclosures.all %}
+                <enclosure url="{{base_href}}{{e.recast_link}}"{% if e.length %} length="{{e.length}}"{% endif %} type="{{e.type}}" />
+            {% endfor %}            
+            {% if p.image_url %}
+                <itunes:image href="{{p.image_url}}"/>
+            {% endif %}
+            
+
+        </item>  
+    {% endfor %}
+    </channel> 
+</rss>
