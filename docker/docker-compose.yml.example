@@ -1,0 +1,14 @@
+services:
+  web:
+    build:
+      context: ./src/app
+      dockerfile: ../docker/Dockerfile
+    container_name: recast
+    user: 1000:1001
+    ports:
+      - 8000:8000
+    volumes:
+      - ./path/to/config:/app/data #map to persist database
+    env_file:
+      - ./env_file #holds server settings values
+    restart: unless-stopped

@@ -1,0 +1,19 @@
+CLOUDFLARE_TOKEN=""
+CLOUDFLARE_ZONE=""
+FEEDS_CLOUDFLARE_WORKER=""
+
+DEBUG=False
+
+FEEDS_SERVER="https://recast.domain.com"
+CSRF_TRUSTED_ORIGINS="https://recast.domain.com"
+
+DATABASES_ENGINE="django.db.backends.sqlite3"
+DATABASES_FILENAME="/app/data/db.sqlite3"
+
+ALLOWED_HOSTS="*"
+
+STATIC_ROOT="static"
+SECRET_KEY="super-secret-key"
+
+ADMIN_NAME="Your Name"
+ADMIN_EMAIL="email@domain.com"
